@@ -1,40 +1,36 @@
-const jokeEl = document.getElementById("joke");
-const jokeBnt = document.getElementById("jokeBnt");
+const jokeEl = document.getElementById('joke')
+const jokeBtn = document.getElementById('jokeBtn')
 
-jokeBnt.addEventListener("click", generateJoke);
-generateJoke();
+jokeBtn.addEventListener('click', generateJoke)
 
-function generateJoke() {
+generateJoke()
+
+// USING ASYNC/AWAIT
+async function generateJoke() {
   const config = {
     headers: {
-      Accept: "application/json",
+      Accept: 'application/json',
     },
-  };
-  fetch("https://icanhazdadjoke.com", config)
-    .then((res) => res.json())
-    .then((data) => {
-      jokeEl.innerHTML = data.joke;
-    });
+  }
+
+  const res = await fetch('https://icanhazdadjoke.com', config)
+
+  const data = await res.json()
+
+  jokeEl.innerHTML = data.joke
 }
 
-// const jokeEl = document.getElementById('joke')
-// const jokeBtn = document.getElementById('jokeBtn')
-
-// jokeBtn.addEventListener('click', generateJoke)
-
-// generateJoke()
-
-// // USING ASYNC/AWAIT
-// async function generateJoke() {
+// USING .then()
+// function generateJoke() {
 //   const config = {
 //     headers: {
 //       Accept: 'application/json',
 //     },
 //   }
 
-//   const res = await fetch('https://icanhazdadjoke.com', config)
-
-//   const data = await res.json()
-
-//   jokeEl.innerHTML = data.joke
+//   fetch('https://icanhazdadjoke.com', config)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       jokeEl.innerHTML = data.joke
+//     })
 // }
